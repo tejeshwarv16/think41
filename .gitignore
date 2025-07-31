@@ -1,10 +1,5 @@
-# Environment folders
-venv/
-ecommerce_env/
-
-# Database files
-*.db
-*.db-journal
-
-# Python cache
-__pycache__/
+/venv/ 
+/ecommerce_env/ 
+*.db 
+*.db-journal 
+/__pycache__/ 
