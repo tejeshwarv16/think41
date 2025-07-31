@@ -1,0 +1,9 @@
+# Environment folders
+venv/
+ecommerce_env/
+
+# Database files
+*.db
+
+# Python cache
+__pycache__/
