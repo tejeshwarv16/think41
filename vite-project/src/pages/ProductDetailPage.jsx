@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 function ProductDetailPage() {
-  const { productId } = useParams(); // Hook to get URL parameters
+  const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ function ProductDetailPage() {
       }
     };
     fetchProduct();
-  }, [productId]); // Re-run effect if productId changes
+  }, [productId]);
 
   if (isLoading) return <div>Loading product details...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -30,18 +30,18 @@ function ProductDetailPage() {
     <div>
       <Link to="/" className="back-link">← Back to Products</Link>
       <div className="product-detail">
+        {/* Reverted to picsum.photos for placeholder images */}
         <img src={`https://picsum.photos/seed/${product.id}/600/400`} alt={product.name} />
         <div className="product-info">
           <h2>{product.name}</h2>
           <p className="price">${product.retail_price.toFixed(2)}</p>
           <p><strong>Brand:</strong> {product.brand}</p>
           <p><strong>Category:</strong> {product.category}</p>
-          <p><strong>Department:</strong> {product.department}</p>
+          <p><strong>Department:</strong> {product.department_name}</p>
           <p className="sku">SKU: {product.sku}</p>
         </div>
       </div>
     </div>
   );
 }
-
 export default ProductDetailPage;

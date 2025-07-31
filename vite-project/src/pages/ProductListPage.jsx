@@ -30,7 +30,8 @@ function ProductListPage() {
       {products.map((product) => (
         <Link to={`/products/${product.id}`} key={product.id} className="product-card-link">
           <div className="product-card">
-            <img src={`https://picsum.photos/seed/${product.id}/300/200`} alt={product.name} />
+            {/* Reverted to picsum.photos for placeholder images */}
+            <img src={`https://picsum.photos/seed/${product.id}/400/400`} alt={product.name} />
             <h2>{product.name}</h2>
             <p>${product.retail_price.toFixed(2)}</p>
           </div>
@@ -39,5 +40,4 @@ function ProductListPage() {
     </div>
   );
 }
-
 export default ProductListPage;
