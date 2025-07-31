@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import ProductGrid from '../components/ProductGrid';
 
 function ProductListPage() {
   const [products, setProducts] = useState([]);
@@ -12,6 +12,11 @@ function ProductListPage() {
         const response = await fetch('http://127.0.0.1:5000/api/products');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
+        
+        // --- ADD THIS LINE FOR DEBUGGING ---
+        console.log("Data received from API:", data);
+        // ------------------------------------
+
         setProducts(data);
       } catch (error) {
         setError(error.message);
@@ -26,18 +31,14 @@ function ProductListPage() {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="product-grid">
-      {products.map((product) => (
-        <Link to={`/products/${product.id}`} key={product.id} className="product-card-link">
-          <div className="product-card">
-            {/* Reverted to picsum.photos for placeholder images */}
-            <img src={`https://picsum.photos/seed/${product.id}/400/400`} alt={product.name} />
-            <h2>{product.name}</h2>
-            <p>${product.retail_price.toFixed(2)}</p>
-          </div>
-        </Link>
-      ))}
+    <div>
+      <div className="page-header">
+        <h2>All Products</h2>
+        <p>{products.length} Products</p>
+      </div>
+      <ProductGrid products={products} />
     </div>
   );
 }
+
 export default ProductListPage;

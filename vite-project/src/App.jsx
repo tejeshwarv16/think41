@@ -1,19 +1,18 @@
 import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
 import ProductListPage from './pages/ProductListPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import DepartmentProductsPage from './pages/DepartmentProductsPage';
 
 function App() {
   return (
-    <div className="container">
-      <h1>Our Products</h1>
-      <Routes>
-        {/* Route for the main product list */}
+    <Routes>
+      <Route element={<Layout />}>
         <Route path="/" element={<ProductListPage />} />
-        
-        {/* Route for a single product's detail page */}
-        <Route path="/products/:productId" element={<ProductDetailPage />} />
-      </Routes>
-    </div>
+        <Route path="/departments/:departmentId" element={<DepartmentProductsPage />} />
+      </Route>
+      <Route path="/products/:productId" element={<ProductDetailPage />} />
+    </Routes>
   );
 }
 
